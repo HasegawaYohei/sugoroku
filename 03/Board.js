@@ -4,9 +4,9 @@
  * Sugorokuクラスによってインスタンス化され, 管理される. よってグローバルにインスタンス化してはならない.
  * @author HasegawaYohei
  */
-class Bord{
-  constructor (numSquare) {
-    this.numSquare = numSquare;
+class Board{
+  constructor (space) {
+    this.space = space;
     this.init();
   }
 
@@ -28,9 +28,8 @@ class Bord{
    * マス目にランダムに得点を割り当てる.
    */
   init () {
-    this.scores = new Array(this.numSquare + 1).fill(0).map( (element, index, array) => {
+    this.scores = new Array(this.space + 1).fill(0).map( (element, index, array) => {
       if (index === 0) return 0;
-      if (index === this.numSquare) return 0;
       return Math.floor( Math.random() * (this.SCORE_MAX - this.SCORE_MIN + 1) ) + this.SCORE_MIN;
     });
   }

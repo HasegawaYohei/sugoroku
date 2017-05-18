@@ -4,7 +4,7 @@
  * Sugorokuクラスによってインスタンス化され, 管理される. よってグローバルにインスタンス化してはならない.
  * @author HasegawaYohei
  */
-class ScoreBord {
+class ScoreBoard {
   constructor (n) {
     this.scoreArray = new Array(n).fill(0).map( (element, index, array) => {
       return {id: index};

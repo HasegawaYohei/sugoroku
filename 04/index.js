@@ -50,7 +50,7 @@ const domInit = () => {
   // Info Panel 作成
   $infoPanel.show();
   $sugorokuInfo.html(`ダイス: ${sugoroku.dice.numEyes}面<br>
-                      マス目: ${sugoroku.bord.numSquare}
+                      マス目: ${sugoroku.board.numSquare}
                     `);
   $ternInfo.html(`ターン: ${sugoroku.tern}<br>`);
   $playerInfo.empty();

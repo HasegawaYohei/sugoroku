@@ -1,6 +1,6 @@
 /**
  * すごろくゲーム本体.
- * Bord, Dice, Player ScoreBordを管理する.
+ * Board, Dice, Player ScoreBoardを管理する.
  * ゲーム全体の流れを管理し, それぞれのクラスのメソッドの使用, プロパティの更新を行う.
  * @author HasegawaYohei
  */
@@ -29,7 +29,7 @@ class Sugoroku {
   init () {
     this.currentPlayerId = 0;
     this.tern = 1;
-    this.bord = new Bord(Number(document.getElementById("space").value));
+    this.board = new Board(Number(document.getElementById("space").value));
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
     this.playerArray = [];
     for (let i = 1; i <= this.NUM_PLAYER; i++) {
@@ -70,15 +70,15 @@ class Sugoroku {
    */
   checkPlace (player) {
     let text;
-    if (player.place === this.bord.space) {
+    if (player.place === this.board.space) {
       player.isGoal = true;
       text = `${player.name}: ゴール!!`;
       writeMessage(`${this.tern}ターン目: ${player.name}さんがゴールしました`);
       resetButtonInit();
     }
-    else if (player.place > this.bord.space) {
-      let over = player.place - this.bord.space;
-      player.place = this.bord.space - over;
+    else if (player.place > this.board.space) {
+      let over = player.place - this.board.space;
+      player.place = this.board.space - over;
       text = `${player.name}: ${player.place}マス目`;
     }
     else {

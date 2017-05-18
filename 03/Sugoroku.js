@@ -1,6 +1,6 @@
 /**
  * すごろくゲーム本体.
- * Bord, Dice, Player ScoreBordを管理する.
+ * Board, Dice, Player ScoreBoardを管理する.
  * ゲーム全体の流れを管理し, それぞれのクラスのメソッドの使用, プロパティの更新を行う.
  * @author HasegawaYohei
  */
@@ -23,8 +23,8 @@ class Sugoroku {
    */
   init (space, numPlayer) {
     this.tern = 1;
-    this.scoreBord = new ScoreBord(numPlayer);
-    this.bord = new Bord(space);
+    this.scoreBoard = new ScoreBoard(numPlayer);
+    this.board = new Board(space);
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
     this.playerArray = new Array(numPlayer).fill(0).map( (element, index, array) => {
       return new Player(index,　`プレイヤー${index+1}`);
@@ -46,8 +46,8 @@ class Sugoroku {
     writeLog(`${player.name}: ${playerDice}の目が出ました.`);
 
     // Player.action() は進んだときに1, 戻ったときに0を返すので, 返り値をチェックしてスコアを設定する.
-    if (player.action(playerDice)) score = this.bord.getScore([player.place]);
-    this.scoreBord.addScore(player.id, this.tern, score);
+    if (player.action(playerDice)) score = this.board.getScore([player.place]);
+    this.scoreBoard.addScore(player.id, this.tern, score);
     // プレイヤーの現在位置を確認し, 返された処理を実行する.
     this.checkPlace(player)(player, this);
     this.endPlayAction();
@@ -59,8 +59,8 @@ class Sugoroku {
    * @return {Function}
    */
   checkPlace (player) {
-    if (player.place === this.bord.space) return this.goal;
-    if (player.place > this.bord.space || player.place < 0) return this.setPlayerPlaceZero;
+    if (player.place === this.board.space) return this.goal;
+    if (player.place > this.board.space || player.place < 0) return this.setPlayerPlaceZero;
 
     return this.execWriteInfo;
   }
@@ -87,8 +87,8 @@ class Sugoroku {
         }).length,
         goalScore = Math.round(self.playerArray.length / goalCount);
 
-    self.scoreBord.addScore(player.id, self.tern, goalScore);
-    let text = `${player.name}: ゴール!! ${self.scoreBord.getScore(player.id)}点`;
+    self.scoreBoard.addScore(player.id, self.tern, goalScore);
+    let text = `${player.name}: ゴール!! ${self.scoreBoard.getScore(player.id)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
 
@@ -98,7 +98,7 @@ class Sugoroku {
    * @param {Sugoroku}
    */
   execWriteInfo (player, self = this) {
-    let text = `${player.name}: ${player.place}マス目 ${self.scoreBord.getScore(player.id, self.tern)}点`;
+    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.tern)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
 
@@ -159,7 +159,7 @@ class Sugoroku {
    * すごろく終了処理
    */
   endSugoroku () {
-    let winnerIdArray = this.scoreBord.getWinner(),
+    let winnerIdArray = this.scoreBoard.getWinner(),
         winnerArray = this.playerArray.filter( (playerArrayElement, playerArrayIndex, playerArrayArray) =>  {
           return winnerIdArray.some( (idArrayElement, idArrayIndex, idArrayArray) => {
             return idArrayElement === playerArrayElement.id;

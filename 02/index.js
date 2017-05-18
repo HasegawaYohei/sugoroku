@@ -40,7 +40,7 @@ const domInit = () => {
 
   infoPanel.style = "display: block";
   sugorokuInfo.innerHTML = `ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
-                            マス目: ${sugoroku.bord.space}
+                            マス目: ${sugoroku.board.space}
                             `;
   ternInfo.innerHTML = `ターン: ${sugoroku.tern}<br>`;
 

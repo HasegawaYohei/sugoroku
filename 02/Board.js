@@ -4,7 +4,7 @@
  * Sugorokuクラスによってインスタンス化され, 管理される. よってグローバルにインスタンス化してはならない.
  * @author HasegawaYohei
  */
-class Bord{
+class Board{
   constructor (space) {
     this.space = space;
   }
