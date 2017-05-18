@@ -5,8 +5,8 @@
  * @author HasegawaYohei
  */
 class Dice {
-  constructor (numEyes) {
-    this.numEyes = numEyes;
+  constructor (diceSurfaceCount) {
+    this.diceSurfaceCount = diceSurfaceCount;
   }
 
   /**
@@ -14,6 +14,6 @@ class Dice {
    * @return {number}
    */
   roll () {
-    return Math.floor( Math.random() * (this.numEyes - 1 + 1) ) + 1;
+    return Math.floor( Math.random() * (this.diceSurfaceCount - 1 + 1) ) + 1;
   }
 }

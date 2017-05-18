@@ -49,7 +49,7 @@ const domInit = () => {
 
   // Info Panel 作成
   $infoPanel.show();
-  $sugorokuInfo.html(`ダイス: ${sugoroku.dice.numEyes}面<br>
+  $sugorokuInfo.html(`ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
                       マス目: ${sugoroku.board.space}
                     `);
   $ternInfo.html(`ターン: ${sugoroku.tern}<br>`);

@@ -11,12 +11,12 @@ const init = () => {
  */
 let sugoroku;
 $("#startButton").on("click", () => {
-  let numSquare = Number($("#numSquare").val()),
+  let numSpace = Number($("#numSpace").val()),
       numPlayer = Number($("#numPlayer").val());
 
-  if (numSquare >= 20 && numSquare <= 30) {
+  if (numSpace >= 20 && numSpace <= 30) {
     if (numPlayer >= 2 && numPlayer <= 4) {
-      sugoroku = new Sugoroku(numSquare, numPlayer);
+      sugoroku = new Sugoroku(numSpace, numPlayer);
       init();
     }
   }
@@ -49,8 +49,8 @@ const domInit = () => {
 
   // Info Panel 作成
   $infoPanel.show();
-  $sugorokuInfo.html(`ダイス: ${sugoroku.dice.numEyes}面<br>
-                      マス目: ${sugoroku.board.numSquare}
+  $sugorokuInfo.html(`ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
+                      マス目: ${sugoroku.board.numSpace}
                     `);
   $ternInfo.html(`ターン: ${sugoroku.tern}<br>`);
   $playerInfo.empty();
@@ -69,7 +69,7 @@ const domInit = () => {
  * Resetボタン
  */
 const resetButtonInit = () => {
-  let numSquare = Number($("#numSquare").val()),
+  let numSpace = Number($("#numSpace").val()),
       numPlayer = Number($("#numPlayer").val()),
       $resetButton = $("<button>");
 
@@ -78,7 +78,7 @@ const resetButtonInit = () => {
   $resetButton.html("リセット");
   $resetButton.on("click", () => {
 
-    sugoroku.init(numSquare, numPlayer);
+    sugoroku.init(numSpace, numPlayer);
     init();
   })
 

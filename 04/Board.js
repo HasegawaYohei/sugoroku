@@ -5,8 +5,8 @@
  * @author HasegawaYohei
  */
 class Board{
-  constructor (numSquare) {
-    this.numSquare = numSquare;
+  constructor (numSpace) {
+    this.numSpace = numSpace;
     this.init();
   }
 
@@ -28,9 +28,9 @@ class Board{
    * マス目にランダムに得点を割り当てる.
    */
   init () {
-    this.scores = new Array(this.numSquare + 1).fill(0).map( (element, index, array) => {
+    this.scores = new Array(this.numSpace + 1).fill(0).map( (element, index, array) => {
       if (index === 0) return 0;
-      if (index === this.numSquare) return 0;
+      if (index === this.numSpace) return 0;
       return Math.floor( Math.random() * (this.SCORE_MAX - this.SCORE_MIN + 1) ) + this.SCORE_MIN;
     });
   }

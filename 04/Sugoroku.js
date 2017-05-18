@@ -5,8 +5,8 @@
  * @author HasegawaYohei
  */
 class Sugoroku {
-  constructor (numSquare, numPlayer) {
-    this.init(numSquare, numPlayer);
+  constructor (numSpace, numPlayer) {
+    this.init(numSpace, numPlayer);
   }
 
   /**
@@ -25,13 +25,13 @@ class Sugoroku {
 
   /**
    * すごろく初期化
-   * @param {number} numSquare
+   * @param {number} numSpace
    * @param {number} numPlayer
    */
-  init (numSquare, numPlayer) {
+  init (numSpace, numPlayer) {
     this.tern = 1;
     this.scoreBoard = new ScoreBoard(numPlayer);
-    this.board = new Board(numSquare);
+    this.board = new Board(numSpace);
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
     this.playerArray = new Array(numPlayer).fill(0).map( (element, index, array) => {
       return new Player(index,　`プレイヤー${index+1}`);
@@ -66,8 +66,8 @@ class Sugoroku {
    * @return {Function}
    */
   checkPlace (player) {
-    if (player.place === this.board.numSquare) return this.goal;
-    if (player.place > this.board.numSquare) return this.overGoal;
+    if (player.place === this.board.numSpace) return this.goal;
+    if (player.place > this.board.numSpace) return this.overGoal;
     if (player.place < 0) return this.underStart;
 
     return this.writeInfo;
@@ -80,7 +80,7 @@ class Sugoroku {
    */
   overGoal (player, self) {
     // ゴール地点を超えた分だけ戻る.
-    player.place -= (player.place - self.board.numSquare) * 2;
+    player.place -= (player.place - self.board.numSpace) * 2;
     let score = self.board.getScore(player.place);
     // ゴールを超えて戻ったら5点減点.
     score -= self.PENALTY;
