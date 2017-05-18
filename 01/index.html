@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>すごろく</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"  href="../style.css">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mrg-tp-45">
+        <div class="col-md-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              Log Panel
+            </div>
+            <div id="logPanel" class="panel-body">
+              <button type="button" id="startButton" class="btn btn-primary center-block">スタート</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="infoPanel" class="panel panel-info" style="display: none;">
+            <div class="panel-heading">
+              Info Panel
+            </div>
+            <div class="panel-body">
+              <p id="sugorokuInfo"></p>
+              <p id="playerInfo"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
