@@ -131,8 +131,8 @@ class Sugoroku {
         });
 
     this.playerArray.forEach( (currentValue, index, array) => {
-      let bounus = (this.playerArray.length * 3) / (placeArray.indexOf(currentValue.place) + 1);
-      this.scoreBoard.addScore(currentValue.id, this.turn, bounus);
+      let bonus = (this.playerArray.length * 3) / (placeArray.indexOf(currentValue.place) + 1);
+      this.scoreBoard.addScore(currentValue.id, this.turn, bonus);
     }, this);
   }
 
