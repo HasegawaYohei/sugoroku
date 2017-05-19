@@ -14,27 +14,27 @@ class ScoreBoard {
   /**
    * プレイヤーのそのターンの得点を追加する.
    * @param {number} id
-   * @param {number} tern
+   * @param {number} turn
    * @param {number} score
    */
-  addScore (id, tern, score) {
-    if (this.scoreArray[id][tern] === undefined) this.scoreArray[id][tern] = this.getScore(id, tern - 1) + score;
-    else this.scoreArray[id][tern] += score;
+  addScore (id, turn, score) {
+    if (this.scoreArray[id][turn] === undefined) this.scoreArray[id][turn] = this.getScore(id, turn - 1) + score;
+    else this.scoreArray[id][turn] += score;
   }
 
   /**
    * プレイヤーの得点を返す.
-   * ternが与えられれば, 与えられたターンの得点を返す.
-   * ternがundefinedなら, 最新のターンの得点を返す.
+   * turnが与えられれば, 与えられたターンの得点を返す.
+   * turnがundefinedなら, 最新のターンの得点を返す.
    * @param {number} id
-   * @param {number} tern
+   * @param {number} turn
    * @return {number}
    */
-  getScore (id, tern) {
+  getScore (id, turn) {
     let obj = this.scoreArray[id],
         i = Object.keys(obj).length;
-    if (tern === undefined) return obj[i - 1];
-    return this.scoreArray[id][tern] || 0;
+    if (turn === undefined) return obj[i - 1];
+    return this.scoreArray[id][turn] || 0;
   }
 
   /**

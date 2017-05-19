@@ -29,7 +29,7 @@ class Sugoroku {
    * @param {number} numPlayer
    */
   init (numSpace, numPlayer) {
-    this.tern = 1;
+    this.turn = 1;
     this.scoreBoard = new ScoreBoard(numPlayer);
     this.board = new Board(numSpace);
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
@@ -54,7 +54,7 @@ class Sugoroku {
 
     player.action(playerDice);
     score = this.board.getScore(player.place);
-    this.scoreBoard.addScore(player.id, this.tern, score);
+    this.scoreBoard.addScore(player.id, this.turn, score);
     // プレイヤーの現在位置を確認し, 返された処理を実行する.
     this.checkPlace(player)(player, this);
     this.endPlayAction();
@@ -84,7 +84,7 @@ class Sugoroku {
     let score = self.board.getScore(player.place);
     // ゴールを超えて戻ったら5点減点.
     score -= self.PENALTY;
-    self.scoreBoard.addScore(player.id, self.tern, score);
+    self.scoreBoard.addScore(player.id, self.turn, score);
   }
 
   /**
@@ -116,7 +116,7 @@ class Sugoroku {
    * @param {Sugoroku} self
    */
   writeInfo (player, self = this) {
-    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.tern)}点`;
+    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.turn)}点`;
     Html.writeText(`#playerInfo${player.id}`, text);
   }
 
@@ -132,7 +132,7 @@ class Sugoroku {
 
     this.playerArray.forEach( (currentValue, index, array) => {
       let bounus = (this.playerArray.length * 3) / (placeArray.indexOf(currentValue.place) + 1);
-      this.scoreBoard.addScore(currentValue.id, this.tern, bounus);
+      this.scoreBoard.addScore(currentValue.id, this.turn, bounus);
     }, this);
   }
 
@@ -146,7 +146,7 @@ class Sugoroku {
       this.updateActivePlayerArray();
       this.updateTern();
     }
-    Html.writeText(`#messageArea`, `${this.tern}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
+    Html.writeText(`#messageArea`, `${this.turn}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
   }
 
   /**
@@ -180,8 +180,8 @@ class Sugoroku {
    * ターンを更新する
    */
   updateTern () {
-    this.tern += 1;
-    Html.writeText(`#ternInfo`, `ターン: ${this.tern}`);
+    this.turn += 1;
+    Html.writeText(`#turnInfo`, `ターン: ${this.turn}`);
   }
 
   /**
@@ -208,7 +208,7 @@ class Sugoroku {
         return !element.isGoal;
       })
       .forEach( (currentValue, index, array) => {
-        Html.writeText(`#playerInfo${currentValue.id}`, `${currentValue.name}: ${currentValue.place}マス目 ${this.scoreBoard.getScore(currentValue.id, this.tern)}点`);
+        Html.writeText(`#playerInfo${currentValue.id}`, `${currentValue.name}: ${currentValue.place}マス目 ${this.scoreBoard.getScore(currentValue.id, this.turn)}点`);
       });
 
     resetButtonInit();

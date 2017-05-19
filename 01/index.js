@@ -2,7 +2,7 @@ const NUM_SQUARE = 30;
 const NUM_DICE_MIN = 1;
 const NUM_DICE_MAX = 6;
 let playerPlace = 0,
-    tern = 1;
+    turn = 1;
     startButton = document.getElementById("startButton");
 
 
@@ -19,7 +19,7 @@ const init = () => {
       logArea = document.createElement("p");
 
   playerPlace = 0;
-  tern = 1;
+  turn = 1;
   logPanel.textContent = null;
 
   diceButton.id = "diceButton";
@@ -32,11 +32,11 @@ const init = () => {
   logPanel.appendChild(diceButton);
   logPanel.appendChild(hr);
   logPanel.appendChild(logArea);
-  
+
   infoPanel.style = `display: block`;
   sugorokuInfo.innerHTML = `ダイス: ${NUM_DICE_MAX}面<br>
                             マス目: ${NUM_SQUARE}<br>
-                            ターン: ${tern}<br>
+                            ターン: ${turn}<br>
                             `;
   playerInfo.innerHTML = `プレイヤー1: スタート`;
 };
@@ -48,7 +48,7 @@ const resetButtonInit = () => {
   let logPanel = document.getElementById("logPanel"),
       diceButton = document.getElementById("diceButton"),
       resetButton = document.createElement("button");
-  
+
   resetButton.id = "resetButton";
   resetButton.className = "btn btn-success center-block";
   resetButton.innerHTML = "リセット";
@@ -73,12 +73,12 @@ const diceButtonInit = () => {
         yourDice = Math.floor( Math.random() * (NUM_DICE_MAX - NUM_DICE_MIN + 1) ) + NUM_DICE_MIN;
 
     playerPlace += yourDice;
-    tern += 1;    
+    turn += 1;
     logArea.innerHTML += `プレイヤー1: ${yourDice}の目が出ました.<br>`;
     playerInfo.innerHTML = `プレイヤー1: ${playerPlace}マス目`;
     sugorokuInfo.innerHTML = `ダイス: ${NUM_DICE_MAX}<br>
                               マス目: ${NUM_SQUARE}<br>
-                              ターン: ${tern}<br>
+                              ターン: ${turn}<br>
                             　`;
 
     if (playerPlace >= NUM_SQUARE) {
@@ -94,5 +94,5 @@ const diceButtonInit = () => {
  */
 startButton.addEventListener("click", () => {
   init();
-  diceButtonInit();  
+  diceButtonInit();
 });

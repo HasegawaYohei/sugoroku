@@ -30,7 +30,7 @@ const domInit = () => {
       $logPanelBody = $("#logPanelBody"),
       $infoPanel = $("#infoPanel"),
       $sugorokuInfo = $("#sugorokuInfo"),
-      $ternInfo = $("#ternInfo"),
+      $turnInfo = $("#turnInfo"),
       $playerInfo = $("#playerInfo"),
       $result = $("#result"),
       $diceButton = $("<button>"),
@@ -52,7 +52,7 @@ const domInit = () => {
   $sugorokuInfo.html(`ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
                       マス目: ${sugoroku.board.space}
                     `);
-  $ternInfo.html(`ターン: ${sugoroku.tern}<br>`);
+  $turnInfo.html(`ターン: ${sugoroku.turn}<br>`);
   $playerInfo.empty();
   for (let i = 0, l = sugoroku.playerArray.length; i < l; i++) {
     let $elem = $("<p>");
@@ -62,7 +62,7 @@ const domInit = () => {
   }
   $result.empty();
 
-  writeMessage(`${sugoroku.tern}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
+  writeMessage(`${sugoroku.turn}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
 }
 
 /**
@@ -115,7 +115,7 @@ const writeInfo = (id, text) => {
  * ターン表示
  */
 const writeTernInfo = text => {
-  $("#ternInfo").html(text);
+  $("#turnInfo").html(text);
 }
 
 /**

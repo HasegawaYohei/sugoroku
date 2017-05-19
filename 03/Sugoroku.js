@@ -22,7 +22,7 @@ class Sugoroku {
    * @param {number} numPlayer
    */
   init (space, numPlayer) {
-    this.tern = 1;
+    this.turn = 1;
     this.scoreBoard = new ScoreBoard(numPlayer);
     this.board = new Board(space);
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
@@ -47,7 +47,7 @@ class Sugoroku {
 
     // Player.action() は進んだときに1, 戻ったときに0を返すので, 返り値をチェックしてスコアを設定する.
     if (player.action(playerDice)) score = this.board.getScore([player.place]);
-    this.scoreBoard.addScore(player.id, this.tern, score);
+    this.scoreBoard.addScore(player.id, this.turn, score);
     // プレイヤーの現在位置を確認し, 返された処理を実行する.
     this.checkPlace(player)(player, this);
     this.endPlayAction();
@@ -87,7 +87,7 @@ class Sugoroku {
         }).length,
         goalScore = Math.round(self.playerArray.length / goalCount);
 
-    self.scoreBoard.addScore(player.id, self.tern, goalScore);
+    self.scoreBoard.addScore(player.id, self.turn, goalScore);
     let text = `${player.name}: ゴール!! ${self.scoreBoard.getScore(player.id)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
@@ -98,7 +98,7 @@ class Sugoroku {
    * @param {Sugoroku}
    */
   execWriteInfo (player, self = this) {
-    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.tern)}点`;
+    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.turn)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
 
@@ -117,7 +117,7 @@ class Sugoroku {
 
       this.updateTern();
     }
-    writeMessage(`${this.tern}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
+    writeMessage(`${this.turn}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
   }
 
   /**
@@ -151,8 +151,8 @@ class Sugoroku {
    * ターンを更新する
    */
   updateTern () {
-    this.tern += 1;
-    writeTernInfo(`ターン: ${this.tern}`);
+    this.turn += 1;
+    writeTernInfo(`ターン: ${this.turn}`);
   }
 
   /**

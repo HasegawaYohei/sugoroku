@@ -28,7 +28,7 @@ class Sugoroku {
    */
   init () {
     this.currentPlayerId = 0;
-    this.tern = 1;
+    this.turn = 1;
     this.board = new Board(Number(document.getElementById("space").value));
     this.dice = new Dice(this.DICE_SURFACE_COUNT);
     this.playerArray = [];
@@ -54,14 +54,14 @@ class Sugoroku {
 
     if (this.currentPlayerId === this.NUM_PLAYER - 1) {
       this.currentPlayerId = 0;
-      this.tern += 1;
-      writeTernInfo(`ターン: ${this.tern}`);
+      this.turn += 1;
+      writeTernInfo(`ターン: ${this.turn}`);
     }
     else {
       this.currentPlayerId += 1;
     }
 
-    writeMessage(`${this.tern}ターン目: ${this.playerArray[this.currentPlayerId].name}さんの番です`);
+    writeMessage(`${this.turn}ターン目: ${this.playerArray[this.currentPlayerId].name}さんの番です`);
   }
 
   /**
@@ -73,7 +73,7 @@ class Sugoroku {
     if (player.place === this.board.space) {
       player.isGoal = true;
       text = `${player.name}: ゴール!!`;
-      writeMessage(`${this.tern}ターン目: ${player.name}さんがゴールしました`);
+      writeMessage(`${this.turn}ターン目: ${player.name}さんがゴールしました`);
       resetButtonInit();
     }
     else if (player.place > this.board.space) {

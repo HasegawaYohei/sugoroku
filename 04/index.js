@@ -30,7 +30,7 @@ const domInit = () => {
       $logPanelBody = $("#logPanelBody"),
       $infoPanel = $("#infoPanel"),
       $sugorokuInfo = $("#sugorokuInfo"),
-      $ternInfo = $("#ternInfo"),
+      $turnInfo = $("#turnInfo"),
       $playerInfo = $("#playerInfo"),
       $result = $("#result"),
       $diceButton = $("<button>"),
@@ -52,7 +52,7 @@ const domInit = () => {
   $sugorokuInfo.html(`ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
                       マス目: ${sugoroku.board.numSpace}
                     `);
-  $ternInfo.html(`ターン: ${sugoroku.tern}<br>`);
+  $turnInfo.html(`ターン: ${sugoroku.turn}<br>`);
   $playerInfo.empty();
   sugoroku.playerArray.forEach( (currentValue, index, array) => {
     let $elem = $("<p>");
@@ -62,7 +62,7 @@ const domInit = () => {
   }, this);
   $result.empty();
 
-  Html.writeText(`#messageArea`, `${sugoroku.tern}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
+  Html.writeText(`#messageArea`, `${sugoroku.turn}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
 }
 
 /**

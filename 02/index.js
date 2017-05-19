@@ -18,7 +18,7 @@ const domInit = () => {
       logPanelBody = document.getElementById("logPanelBody"),
       infoPanel = document.getElementById("infoPanel"),
       sugorokuInfo = document.getElementById("sugorokuInfo"),
-      ternInfo = document.getElementById("ternInfo"),
+      turnInfo = document.getElementById("turnInfo"),
       playerInfo = document.getElementById("playerInfo"),
       diceButton = document.createElement("button"),
       hr = document.createElement("hr"),
@@ -42,7 +42,7 @@ const domInit = () => {
   sugorokuInfo.innerHTML = `ダイス: ${sugoroku.dice.diceSurfaceCount}面<br>
                             マス目: ${sugoroku.board.space}
                             `;
-  ternInfo.innerHTML = `ターン: ${sugoroku.tern}<br>`;
+  turnInfo.innerHTML = `ターン: ${sugoroku.turn}<br>`;
 
   playerInfo.textContent = null;
   for (let i = 0, l = sugoroku.playerArray.length; i < l; i++) {
@@ -52,7 +52,7 @@ const domInit = () => {
     playerInfo.appendChild(elem);
   }
 
-  writeMessage(`${sugoroku.tern}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
+  writeMessage(`${sugoroku.turn}ターン目: ${sugoroku.playerArray[0].name}さんの番です`);
 }
 
 /**
@@ -106,8 +106,8 @@ const writeInfo = (id, text) => {
  * ターン表示
  */
 const writeTernInfo = text => {
-  let ternInfo = document.getElementById("ternInfo");
-  ternInfo.innerHTML = text;
+  let turnInfo = document.getElementById("turnInfo");
+  turnInfo.innerHTML = text;
 }
 
 /**
