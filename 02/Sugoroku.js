@@ -55,7 +55,7 @@ class Sugoroku {
     if (this.currentPlayerId === this.NUM_PLAYER - 1) {
       this.currentPlayerId = 0;
       this.turn += 1;
-      writeTernInfo(`ターン: ${this.turn}`);
+      writeTurnInfo(`ターン: ${this.turn}`);
     }
     else {
       this.currentPlayerId += 1;

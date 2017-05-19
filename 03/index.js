@@ -114,7 +114,7 @@ const writeInfo = (id, text) => {
 /**
  * ターン表示
  */
-const writeTernInfo = text => {
+const writeTurnInfo = text => {
   $("#turnInfo").html(text);
 }
 

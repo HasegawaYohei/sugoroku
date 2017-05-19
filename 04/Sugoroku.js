@@ -144,7 +144,7 @@ class Sugoroku {
     if (!this.updateCurrentPlayer()) {
       // 更新できなければ, アクティブプレイヤーリストを更新して, 設定し直す.
       this.updateActivePlayerArray();
-      this.updateTern();
+      this.updateTurn();
     }
     Html.writeText(`#messageArea`, `${this.turn}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
   }
@@ -179,7 +179,7 @@ class Sugoroku {
   /**
    * ターンを更新する
    */
-  updateTern () {
+  updateTurn () {
     this.turn += 1;
     Html.writeText(`#turnInfo`, `ターン: ${this.turn}`);
   }

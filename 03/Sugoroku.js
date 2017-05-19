@@ -115,7 +115,7 @@ class Sugoroku {
         return;
       }
 
-      this.updateTern();
+      this.updateTurn();
     }
     writeMessage(`${this.turn}ターン目: ${this.activePlayerArray[this.currentPlayerId].name}さんの番です`);
   }
@@ -150,9 +150,9 @@ class Sugoroku {
   /**
    * ターンを更新する
    */
-  updateTern () {
+  updateTurn () {
     this.turn += 1;
-    writeTernInfo(`ターン: ${this.turn}`);
+    writeTurnInfo(`ターン: ${this.turn}`);
   }
 
   /**

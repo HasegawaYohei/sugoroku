@@ -105,7 +105,7 @@ const writeInfo = (id, text) => {
 /**
  * ターン表示
  */
-const writeTernInfo = text => {
+const writeTurnInfo = text => {
   let turnInfo = document.getElementById("turnInfo");
   turnInfo.innerHTML = text;
 }
