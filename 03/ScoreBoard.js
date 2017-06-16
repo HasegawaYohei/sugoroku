@@ -47,7 +47,7 @@ class ScoreBoard {
       return element[i - 1];
     });
 
-    return Math.max.apply(null, scores);
+    return Math.max(...scores);
   }
 
   /**
