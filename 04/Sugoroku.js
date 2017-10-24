@@ -38,6 +38,11 @@ class Sugoroku {
     });
     this.activePlayerArray = $.extend(true, [], this.playerArray);
     this.currentPlayerId = 0;
+
+    this.overGoal   = this.overGoal.bind(this);
+    this.underStart = this.underStart.bind(this);
+    this.goal       = this.goal.bind(this);
+    this.writeInfo  = this.writeInfo.bind(this);
   };
 
   /**
@@ -76,47 +81,43 @@ class Sugoroku {
   /**
    * ゴールを超えたときの処理
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  overGoal (player, self) {
+  overGoal (player) {
     // ゴール地点を超えた分だけ戻る.
-    player.place -= (player.place - self.board.numSpace) * 2;
-    let score = self.board.getScore(player.place);
+    player.place -= (player.place - this.board.numSpace) * 2;
+    let score = this.board.getScore(player.place);
     // ゴールを超えて戻ったら5点減点.
-    score -= self.PENALTY;
-    self.scoreBoard.addScore(player.id, self.turn, score);
+    score -= this.PENALTY;
+    this.scoreBoard.addScore(player.id, this.turn, score);
   }
 
   /**
    * スタート地点よりも前に戻ってしまったら, スタート地点に戻る.
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  underStart (player, self) {
+  underStart (player) {
     player.place = 0;
-    self.writeInfo(player, self);
+    this.writeInfo(player);
   }
 
   /**
    * ゴールした時の処理
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  goal (player, self = this) {
+  goal (player) {
     player.isGoal = true;
-    self.addBonusScore();
-    let text = `${player.name}: ゴール!! ${self.scoreBoard.getScore(player.id)}点`;
+    this.addBonusScore();
+    let text = `${player.name}: ゴール!! ${this.scoreBoard.getScore(player.id)}点`;
     Html.writeText(`#playerInfo${player.id}`, text);
-    self.endSugoroku();
+    this.endSugoroku();
   }
 
   /**
    * writeInfo を実行
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  writeInfo (player, self = this) {
-    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.turn)}点`;
+  writeInfo (player) {
+    let text = `${player.name}: ${player.place}マス目 ${this.scoreBoard.getScore(player.id, this.turn)}点`;
     Html.writeText(`#playerInfo${player.id}`, text);
   }
 
@@ -194,15 +195,16 @@ class Sugoroku {
             return idArrayElement === playersElement.id;
           })
         }),
-        text = "";
+        textArray = [],
+        resultText = '';
 
     winnerArray.forEach( (currentValue, index, array) => {
-      text += `${currentValue.name}さん・`;
+      textArray.push(`${currentValue.name}さん`);
     });
-    text = text.slice(0, -1);
-    text += `の勝ちです.`;
+    resultText = textArray.join('・');
+    resultText += `の勝ちです.`;
     Html.writeText(`#messageArea`, `ゲーム終了`);
-    Html.writeText(`#result`, text);
+    Html.writeText(`#result`, resultText);
     this.playerArray
       .filter( (element, index, array) => {
         return !element.isGoal;

@@ -64,4 +64,5 @@ class ScoreBoard {
             }).map( (element, index, array) => {
               return element.id;
             });
-  }}
+  }
+}

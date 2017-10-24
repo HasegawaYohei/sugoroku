@@ -14,6 +14,6 @@ class Dice {
    * @return {number}
    */
   roll () {
-    return Math.floor( Math.random() * (this.diceSurfaceCount - 1 + 1) ) + 1;
+    return Math.floor( Math.random() * this.diceSurfaceCount) + 1;
   }
 }
