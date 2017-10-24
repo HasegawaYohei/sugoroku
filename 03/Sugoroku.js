@@ -31,6 +31,10 @@ class Sugoroku {
     });
     this.activePlayerArray = $.extend(true, [], this.playerArray);
     this.currentPlayerId = 0;
+
+    this.setPlayerPlaceZero = this.setPlayerPlaceZero.bind(this);
+    this.goal = this.goal.bind(this);
+    this.execWriteInfo = this.execWriteInfo.bind(this);
   };
 
   /**
@@ -68,37 +72,34 @@ class Sugoroku {
   /**
    * プレイヤーの現在位置をスタート地点にする
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  setPlayerPlaceZero (player, self) {
+  setPlayerPlaceZero (player) {
     player.place = 0;
-    self.execWriteInfo(player, self);
+    this.execWriteInfo(player);
   }
 
   /**
    * ゴールした時の処理
    * @param {Player} player
-   * @param {Sugoroku} self
    */
-  goal (player, self = this) {
+  goal (player) {
     player.isGoal = true;
-    let goalCount = self.playerArray.filter( (element, index, array) => {
+    let goalCount = this.playerArray.filter( (element, index, array) => {
           return element.isGoal;
         }).length,
-        goalScore = Math.round(self.playerArray.length / goalCount);
+        goalScore = Math.round(this.playerArray.length / goalCount);
 
-    self.scoreBoard.addScore(player.id, self.turn, goalScore);
-    let text = `${player.name}: ゴール!! ${self.scoreBoard.getScore(player.id)}点`;
+    this.scoreBoard.addScore(player.id, this.turn, goalScore);
+    let text = `${player.name}: ゴール!! ${this.scoreBoard.getScore(player.id)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
 
   /**
    * writeInfo を実行
    * @param {Player} player
-   * @param {Sugoroku}
    */
-  execWriteInfo (player, self = this) {
-    let text = `${player.name}: ${player.place}マス目 ${self.scoreBoard.getScore(player.id, self.turn)}点`;
+  execWriteInfo (player) {
+    let text = `${player.name}: ${player.place}マス目 ${this.scoreBoard.getScore(player.id, this.turn)}点`;
     writeInfo(`#playerInfo${player.id}`, text);
   }
 
