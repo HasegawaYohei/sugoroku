@@ -53,7 +53,7 @@ class Sugoroku {
     if (player.action(playerDice)) score = this.board.getScore([player.place]);
     this.scoreBoard.addScore(player.id, this.turn, score);
     // プレイヤーの現在位置を確認し, 返された処理を実行する.
-    this.checkPlace(player)(player, this);
+    this.checkPlace(player)(player);
     this.endPlayAction();
   }
 
